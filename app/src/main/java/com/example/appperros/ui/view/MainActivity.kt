@@ -65,7 +65,7 @@ class MainActivity : AppCompatActivity() {
                 Toast.makeText(this, "Google Sign In Success", Toast.LENGTH_SHORT).show()
             } catch (e: ApiException) {
                 // Manejar errores de inicio de sesión aquí
-                Log.w("", "Google sign in failed", e)
+                Log.w("", "Google sign in failed too", e)
                 Toast.makeText(this, "Google Sign In Failed", Toast.LENGTH_SHORT).show()
             }
         }
