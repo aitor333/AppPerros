@@ -5,7 +5,6 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.room.Room
-import com.example.appperros.di.AppDatabase
 
 class HomeViewModel  : ViewModel() {
 

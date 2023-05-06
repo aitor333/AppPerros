@@ -1,27 +1,22 @@
 package com.example.appperros.ui.fragments
 
+import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.TextView
+import androidx.appcompat.widget.AppCompatButton
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
-import androidx.room.Room
-import com.example.appperros.data.database.dao.UserDao
+import com.example.appperros.R
 import com.example.appperros.databinding.FragmentHomeBinding
-import com.example.appperros.di.AppDatabase
-import com.example.appperros.ui.prefs.prefs
+import com.example.appperros.ui.view.SearchDogsActivity
 import com.example.appperros.ui.viewmodel.HomeViewModel
-import kotlinx.coroutines.GlobalScope
-import kotlinx.coroutines.flow.forEach
-import kotlinx.coroutines.launch
-import javax.inject.Inject
+import com.example.appperros.ui.view.ShowDogsActivity
 
 class HomeFragment : Fragment() {
 
     private var _binding: FragmentHomeBinding? = null
-    private lateinit var userDao: UserDao
 
     // This property is only valid between onCreateView and
     // onDestroyView.
@@ -38,13 +33,14 @@ class HomeFragment : Fragment() {
         _binding = FragmentHomeBinding.inflate(inflater, container, false)
         val root: View = binding.root
 
-        val textView: TextView = binding.textHome
-        homeViewModel.text.observe(viewLifecycleOwner) {
-            val prefs : prefs = prefs(requireContext())
-            val nombreCorreo = prefs.getName()
-            textView.text = "Nombre : "+nombreCorreo
-        }
-
+        val btnVerPerros = root.findViewById<AppCompatButton>(R.id.btnVerPerros)
+        val btnBuscarPerros = root.findViewById<AppCompatButton>(R.id.btnBuscarPerros)
+        btnVerPerros.setOnClickListener(View.OnClickListener {
+           startActivity(Intent(this@HomeFragment.requireContext(), ShowDogsActivity::class.java))
+        })
+        btnBuscarPerros.setOnClickListener(View.OnClickListener {
+            startActivity(Intent(this@HomeFragment.requireContext(), SearchDogsActivity::class.java))
+        })
         return root
     }
 

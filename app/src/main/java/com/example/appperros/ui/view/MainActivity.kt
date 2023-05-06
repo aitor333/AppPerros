@@ -7,8 +7,6 @@ import android.util.Log
 import android.widget.Toast
 import androidx.room.Room
 import com.example.appperros.R
-import com.example.appperros.di.AppDatabase
-import com.example.appperros.data.database.entities.UserEntity
 import com.example.appperros.ui.prefs.prefs
 import com.google.android.gms.auth.api.signin.GoogleSignIn
 import com.google.android.gms.auth.api.signin.GoogleSignInClient
@@ -53,8 +51,7 @@ class MainActivity : AppCompatActivity() {
                 val correoUser = task.result.email.toString()
                 // Autenticación exitosa
                 GlobalScope.launch {
-                    insertarUser(nombreUser,correoUser)
-                    val prefs :prefs = prefs(applicationContext)
+                    val prefs: prefs = prefs(applicationContext)
                     prefs.saveName(nombreUser)
                     prefs.saveCorreo(correoUser)
                 }
@@ -70,12 +67,4 @@ class MainActivity : AppCompatActivity() {
             }
         }
     }
-    private suspend fun insertarUser(nombre: String, correo: String) {
-        val db = Room.databaseBuilder(
-            applicationContext,
-            AppDatabase::class.java, "user_bd"
-        ).build()
-            var user : UserEntity = UserEntity(0,nombre,correo,2)
-            db.userDao().insertUser(user)
-        }
-    }
+}
