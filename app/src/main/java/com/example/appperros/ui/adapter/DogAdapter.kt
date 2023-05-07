@@ -1,11 +1,12 @@
 package com.example.appperros.ui.adapter
 
+import android.content.Context
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.example.appperros.R
 
-class DogAdapter(private val images: List<String>) : RecyclerView.Adapter<DogViewHolder>() {
+class DogAdapter(private val images: List<String>,private val context:Context) : RecyclerView.Adapter<DogViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): DogViewHolder {
         val layoutInflater = LayoutInflater.from(parent.context)
@@ -17,6 +18,7 @@ class DogAdapter(private val images: List<String>) : RecyclerView.Adapter<DogVie
 
     override fun onBindViewHolder(holder: DogViewHolder, position: Int) {
         val item = images[position]
+        holder.startActivity(context)
         holder.bind(item)
     }
 }

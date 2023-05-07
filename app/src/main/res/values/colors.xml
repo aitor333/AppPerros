@@ -7,4 +7,9 @@
     <color name="teal_700">#FF018786</color>
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
+    <!--Colores para background de nuestra details dog-->
+    <color name="cutty_shark">#598781</color>
+    <color name="mineral_green">#415451</color>
+    <color name="blue_smoke">#6b8581</color>
+    <color name="shadow_greem">#95c7bf</color>
 </resources>

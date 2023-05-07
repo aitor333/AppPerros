@@ -98,4 +98,6 @@
     </string>
     <string name="buscar_perros">Buscar Perros</string>
     <string name="ver_perros">Ver Perros</string>
+    <string name="insertar_perro">Insertar Perro</string>
+    <string name="borrar_perro">Borrar Perro</string>
 </resources>

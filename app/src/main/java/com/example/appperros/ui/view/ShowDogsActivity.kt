@@ -23,13 +23,22 @@ class ShowDogsActivity : AppCompatActivity(){
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityShowDogsBinding.inflate(layoutInflater)
+        initRecyclerView()
         searchByName("english")
         setContentView(binding.root)
-        initRecyclerView()
+        binding.btnAtras.setOnClickListener{
+            onBackPressed()
+        }
+
+
+    }
+
+    override fun onBackPressed() {
+        super.onBackPressed()
     }
 
     private fun initRecyclerView() {
-        adapter = DogAdapter(dogImages)
+        adapter = DogAdapter(dogImages,this)
         binding.rvshowDogs.layoutManager = LinearLayoutManager(this)
         binding.rvshowDogs.adapter = adapter
     }

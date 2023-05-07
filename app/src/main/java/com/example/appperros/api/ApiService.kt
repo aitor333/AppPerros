@@ -9,5 +9,5 @@ interface ApiService {
     suspend fun getDogsByBreeds(@Url url:String): Response<DogsResponse>
 
     @GET
-    suspend fun getDogs(@Url url:String): Response<DogsResponse>
+    suspend fun getBreedbyDog(@Url url:String): Response<DogsResponse>
 }

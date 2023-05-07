@@ -28,10 +28,17 @@ class SearchDogsActivity : AppCompatActivity() , SearchView.OnQueryTextListener 
         binding.svDogs.setOnQueryTextListener(this)
         setContentView(binding.root)
         initRecyclerView()
+        binding.btnAtras.setOnClickListener{
+            onBackPressed()
+        }
     }
 
+
+    override fun onBackPressed() {
+        super.onBackPressed()
+    }
     private fun initRecyclerView() {
-        adapter = DogAdapter(dogImages)
+        adapter = DogAdapter(dogImages,this)
         binding.rvSearchDogs.layoutManager = LinearLayoutManager(this)
         binding.rvSearchDogs.adapter = adapter
     }
