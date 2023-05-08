@@ -148,11 +148,8 @@
         android:orientation="horizontal"
         android:layout_marginTop="20dp">
 
-
-    <!--
-    Imagen del banner de la app
-    -->
         <ImageView
+            android:id="@+id/imgBannerApp"
             android:layout_width="match_parent"
             android:layout_height="160dp"
             android:scaleType="fitXY"
