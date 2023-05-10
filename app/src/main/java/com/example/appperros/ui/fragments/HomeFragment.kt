@@ -10,6 +10,7 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import com.example.appperros.R
 import com.example.appperros.databinding.FragmentHomeBinding
+import com.example.appperros.ui.view.InsertDogsActivity
 import com.example.appperros.ui.view.SearchDogsActivity
 import com.example.appperros.ui.viewmodel.HomeViewModel
 import com.example.appperros.ui.view.ShowDogsActivity
@@ -35,12 +36,16 @@ class HomeFragment : Fragment() {
 
         val btnVerPerros = root.findViewById<AppCompatButton>(R.id.btnVerPerros)
         val btnBuscarPerros = root.findViewById<AppCompatButton>(R.id.btnBuscarPerros)
+        val btnInsertarPerro = root.findViewById<AppCompatButton>(R.id.btnInsertarPerro)
         btnVerPerros.setOnClickListener(View.OnClickListener {
            startActivity(Intent(this@HomeFragment.requireContext(), ShowDogsActivity::class.java))
         })
         btnBuscarPerros.setOnClickListener(View.OnClickListener {
             startActivity(Intent(this@HomeFragment.requireContext(), SearchDogsActivity::class.java))
         })
+        btnInsertarPerro.setOnClickListener {
+            startActivity(Intent(this@HomeFragment.requireContext(), InsertDogsActivity::class.java))
+        }
         return root
     }
 

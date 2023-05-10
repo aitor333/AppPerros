@@ -16,6 +16,9 @@
         android:theme="@style/Theme.AppPerros.AppPerrosMineTheme"
         tools:targetApi="31">
         <activity
+            android:name=".ui.view.InsertDogsActivity"
+            android:exported="false" />
+        <activity
             android:name=".ui.view.ShowDogDetailsActivity"
             android:exported="false" />
         <activity
