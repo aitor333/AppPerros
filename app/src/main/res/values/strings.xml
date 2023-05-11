@@ -100,4 +100,10 @@
     <string name="ver_perros">Ver Perros</string>
     <string name="insertar_perro">Insertar Perro</string>
     <string name="borrar_perro">Borrar Perro</string>
+
+    <!--Array de opciones de sexo del animal-->
+    <string-array name="sexo">
+        <item>M</item>
+        <item>F</item>
+    </string-array>
 </resources>

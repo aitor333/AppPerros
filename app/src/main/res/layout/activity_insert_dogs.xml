@@ -142,14 +142,13 @@
             android:text="Sexo"
             android:textSize="20sp"/>
 
-        <EditText
-            android:id="@+id/edtxtSexo"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+        <Spinner
+            android:id="@+id/spSexo"
+            android:entries="@array/sexo"
             android:layout_marginStart="20dp"
-            android:inputType="text"
-            android:maxLines="1"
-            android:maxLength="1"/>
+            android:scrollbarSize="22dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
 
     </LinearLayout>
 
