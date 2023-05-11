@@ -1,15 +1,13 @@
 package com.example.appperros.ui.view
 
 
-
 import android.os.Bundle
 import android.util.Log
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.example.appperros.databinding.ActivityInsertDogsBinding
+import com.example.appperros.help.Conexion
 import com.example.appperros.help.Conexion.connectionclass
-import com.example.appperros.help.DatePicker
-
 
 class InsertDogsActivity : AppCompatActivity() {
     private var binding: ActivityInsertDogsBinding? = null
@@ -17,71 +15,63 @@ class InsertDogsActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         binding = ActivityInsertDogsBinding.inflate(layoutInflater)
         setContentView(binding!!.root)
+        mostrarErrores()
 
         //Insert
         binding!!.btnInsertar.setOnClickListener {
-            val connection = connectionclass()
-            try {
-                if (connection != null) {
-                    //insert into perro
-                    // (nombreperro,nombreraza,edad,nchip,fecha_nacimiento,sexo,peso) values('vvv','cc',22,'vwdrB','12-12-12','m',12);
-                    val query =
-                        "insert into perro (nombreperro,nombreraza,edad,nchip,fecha_nacimiento,sexo,peso) VALUES (?,?,?,?,?,?,?)"
-                    val statement = connection.prepareStatement(query)
-                    statement.setString(1, binding!!.edtxtNombre.text.toString())
-                    statement.setString(2, binding!!.edtxtRaza.text.toString())
-                    statement.setInt(3, binding!!.edtxtEdad.text.toString().toInt())
-                    statement.setString(4, binding!!.edtxtNChip.text.toString())
-                    statement.setString(5, binding!!.edtxtFechaNacimiento.text.toString())
-                    statement.setString(6, binding!!.edtxtSexo.text.toString())
-                    statement.setInt(7, binding!!.edtxtPeso.text.toString().toInt())
-                    val rowsAffected = statement.executeUpdate()
+            if(validarCampos()){
+                Toast.makeText(applicationContext,"Fallo al rellenar los campos",Toast.LENGTH_SHORT).show()
+            }
 
-                    Toast.makeText(
-                        this@InsertDogsActivity,
-                        "Registro insertado coreectamente",
-                        Toast.LENGTH_SHORT
-                    ).show()
-                    connection.close()
-                }
-            } catch (exception: Exception) {
-                Log.e("Error en el registro", exception.message!!)
+
+                    val connection = connectionclass()
+                    try {
+                        if (connection != null) {
+                            val query =
+                                "insert into perro (nombreperro,nombreraza,edad,nchip,sexo,peso) VALUES (?,?,?,?,?,?)"
+                            val statement = connection.prepareStatement(query)
+                            statement.setString(1, binding!!.edtxtNombre.text.toString())
+                            statement.setString(2, binding!!.edtxtRaza.text.toString())
+                            statement.setInt(3, binding!!.edtxtEdad.text.toString().toInt())
+                            statement.setString(4, binding!!.edtxtNChip.text.toString())
+                            statement.setString(5, binding!!.edtxtSexo.text.toString())
+                            statement.setInt(6, binding!!.edtxtPeso.text.toString().toInt())
+                            val rowsAffected = statement.executeUpdate()
+
+                            Toast.makeText(
+                                applicationContext,
+                                "Registro insertado coreectamente",
+                                Toast.LENGTH_SHORT
+                            ).show()
+                            connection.close()
+                        }
+                    } catch (exception: Exception) {
+                        Log.e("Error en el registro", exception.message!!)
+                    }
+
+
+            binding!!.btnBackInsertar.setOnClickListener {
+                onBackPressed()
             }
         }
+    }
 
-
-        binding!!.btnBackInsertar.setOnClickListener {
-            onBackPressed()
+    private fun mostrarErrores() {
+        var listaErrores = Conexion.errores
+        for (error in listaErrores){
+            if(error.equals("Network error IOException: failed to connect to /192.168.1.132 (port 1433) from /:: (port 53724): connect failed: ETIMEDOUT (Connection timed out)")){
+                Toast.makeText(this@InsertDogsActivity,"Fallo en la conexion al servidor de la bd ",Toast.LENGTH_SHORT).show()
+            }
         }
+    }
 
-        binding!!.edtxtFechaNacimiento.setOnClickListener {
-            showDatePickerDialog()
-        }
+    private fun validarCampos() : Boolean{
+        return !(binding!!.edtxtEdad.text.toString().isEmpty() && binding!!.edtxtNombre.text.toString().isEmpty() &&binding!!.edtxtRaza.text.toString().isEmpty() && binding!!.edtxtNChip.text.toString().isEmpty() && binding!!.edtxtSexo.text.toString().isEmpty() && binding!!.edtxtPeso.text.toString().isEmpty())
     }
 
     override fun onBackPressed() {
         super.onBackPressed()
     }
-
-    private fun showDatePickerDialog() {
-        val datePicker = DatePicker { day, month, year -> onDateSelected(day, month, year) }
-        datePicker.show(supportFragmentManager, "datePicker")
-
-    }
-
-    private fun onDateSelected(day: Int, month: Int, year: Int) {
-
-        val caracteresMes = month.toString().length
-        val caracteresdias = day.toString().length
-        if(caracteresMes == 1 && caracteresdias == 1){
-            val mesFormateado = String.format("%02d", month)
-            val diaFormateado = String.format("%02d", day)
-
-        }
-        val fecha_nacimiento : String = "$year-$month-$day"
-       // binding!!.edtxtFechaNacimiento.setText("Fecha Escogida: "+message)
-    }
-
 
 
 }
