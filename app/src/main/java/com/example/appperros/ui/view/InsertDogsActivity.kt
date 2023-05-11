@@ -1,13 +1,14 @@
 package com.example.appperros.ui.view
 
 
-import android.content.Intent
+
 import android.os.Bundle
 import android.util.Log
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.example.appperros.databinding.ActivityInsertDogsBinding
 import com.example.appperros.help.Conexion.connectionclass
+import com.example.appperros.help.DatePicker
 
 
 class InsertDogsActivity : AppCompatActivity() {
@@ -52,9 +53,35 @@ class InsertDogsActivity : AppCompatActivity() {
         binding!!.btnBackInsertar.setOnClickListener {
             onBackPressed()
         }
+
+        binding!!.edtxtFechaNacimiento.setOnClickListener {
+            showDatePickerDialog()
+        }
     }
 
     override fun onBackPressed() {
         super.onBackPressed()
     }
+
+    private fun showDatePickerDialog() {
+        val datePicker = DatePicker { day, month, year -> onDateSelected(day, month, year) }
+        datePicker.show(supportFragmentManager, "datePicker")
+
+    }
+
+    private fun onDateSelected(day: Int, month: Int, year: Int) {
+
+        val caracteresMes = month.toString().length
+        val caracteresdias = day.toString().length
+        if(caracteresMes == 1 && caracteresdias == 1){
+            val mesFormateado = String.format("%02d", month)
+            val diaFormateado = String.format("%02d", day)
+
+        }
+        val fecha_nacimiento : String = "$year-$month-$day"
+       // binding!!.edtxtFechaNacimiento.setText("Fecha Escogida: "+message)
+    }
+
+
+
 }
