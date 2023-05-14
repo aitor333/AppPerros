@@ -5,7 +5,6 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
 import android.widget.Toast
-import androidx.room.Room
 import com.example.appperros.R
 import com.example.appperros.ui.prefs.prefs
 import com.google.android.gms.auth.api.signin.GoogleSignIn
@@ -25,16 +24,21 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        val gso = GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
-            .requestEmail()
-            .build()
+        try {
 
-        googleSignInClient = GoogleSignIn.getClient(this, gso)
+            val gso = GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
+                .requestEmail()
+                .build()
 
-        val signInButton = findViewById<SignInButton>(R.id.google_sign_in_button)
-        signInButton.setOnClickListener {
-            val signInIntent = googleSignInClient.signInIntent
-            startActivityForResult(signInIntent, RC_SIGN_IN)
+            googleSignInClient = GoogleSignIn.getClient(this, gso)
+
+            val signInButton = findViewById<SignInButton>(R.id.google_sign_in_button)
+            signInButton.setOnClickListener {
+                val signInIntent = googleSignInClient.signInIntent
+                startActivityForResult(signInIntent, RC_SIGN_IN)
+            }
+        }catch (ex:java.lang.RuntimeException){
+            Toast.makeText(this,"Error al loguearse",Toast.LENGTH_SHORT).show()
         }
     }
 
@@ -57,7 +61,7 @@ class MainActivity : AppCompatActivity() {
                 }
 
                 Log.d("Display Name", nombreUser)
-                startActivity(Intent(this@MainActivity, BottomNavigationActivity::class.java))
+                startActivity(Intent(this@MainActivity, Menu::class.java))
                 val account = task.getResult(ApiException::class.java)
                 Toast.makeText(this, "Google Sign In Success", Toast.LENGTH_SHORT).show()
             } catch (e: ApiException) {

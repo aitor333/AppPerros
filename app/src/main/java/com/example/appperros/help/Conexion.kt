@@ -6,6 +6,7 @@ import android.util.Log
 import android.widget.Toast
 import java.sql.Connection
 import java.sql.DriverManager
+import java.sql.SQLException
 
 object Conexion {
 
@@ -26,7 +27,7 @@ object Conexion {
             val connectionUrl =
                 "jdbc:jtds:sqlserver://$ip:$port;databasename=$databasename;User=$username;password=$password;"
             con = DriverManager.getConnection(connectionUrl)
-        } catch (exception: Exception) {
+        } catch (exception: SQLException) {
             Log.e("Error en la conexion", exception.message!!)
             when(exception.message){
                 "Network error IOException: failed to connect to /192.168.1.132 (port 1433) from /:: (port 53724): connect failed: ETIMEDOUT (Connection timed out)"

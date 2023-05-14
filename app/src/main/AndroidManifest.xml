@@ -1,9 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools">
-
+    <!-- Permisos necesarios -->
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
     <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.CAMERA" />
 
     <application
         android:name=".ui.prefs.UserApplication"
@@ -16,6 +17,12 @@
         android:theme="@style/Theme.AppPerros.AppPerrosMineTheme"
         tools:targetApi="31">
         <activity
+            android:name=".ui.view.ShowDogsBdActivity"
+            android:exported="false" />
+        <activity
+            android:name=".ui.view.Menu"
+            android:exported="false" />
+        <activity
             android:name=".ui.view.InsertDogsActivity"
             android:exported="false" />
         <activity
@@ -26,9 +33,6 @@
             android:exported="false" />
         <activity
             android:name=".ui.view.ShowDogsActivity"
-            android:exported="false" />
-        <activity
-            android:name=".ui.view.BottomNavigationActivity"
             android:exported="false" />
         <activity
             android:name=".ui.view.MainActivity"
