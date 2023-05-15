@@ -50,7 +50,7 @@ android {
 dependencies {
 
     implementation "org.jetbrains.kotlin:kotlin-stdlib:1.8.10"
-    implementation 'androidx.core:core-ktx:1.10.0'
+    implementation 'androidx.core:core-ktx:1.10.1'
     implementation 'androidx.appcompat:appcompat:1.6.1'
     implementation 'com.google.android.material:material:1.8.0'
     implementation 'androidx.constraintlayout:constraintlayout:2.1.4'
@@ -74,7 +74,7 @@ dependencies {
     //kapt "com.google.dagger:hilt-android-compiler:2.5.1"
     //Room
     implementation "androidx.room:room-ktx:2.5.1"
-    implementation files('C:\\Users\\Aitor Parada Linaje\\Desktop\\proyectos Android\\AppDog\\app\\libs\\jtds-1.3.1.jar')
+    implementation files('C:\\Users\\aitorparada\\Desktop\\proyectos_android\\AppPerros\\app\\libs\\\\jtds-1.3.1.jar')
     kapt "androidx.room:room-compiler:2.5.1"
 
     testImplementation "io.mockk:mockk:1.12.2"
@@ -90,7 +90,7 @@ dependencies {
     implementation("com.google.dagger:hilt-android:2.44")
     kapt("com.google.dagger:hilt-android-compiler:2.44")
 
-    def room_version = "2.4.0"
+    def room_version = '2.5.1'
 
     implementation "androidx.room:room-runtime:$room_version"
     kapt "androidx.room:room-compiler:$room_version"

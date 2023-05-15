@@ -12,6 +12,7 @@ import com.example.appperros.help.Conexion
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
 import java.sql.Connection
 
 class ShowDogsBdActivity : AppCompatActivity() {
@@ -24,6 +25,7 @@ class ShowDogsBdActivity : AppCompatActivity() {
         binding = ActivityShowDogsBdBinding.inflate(layoutInflater)
         setContentView(binding.root)
         binding!!.btnLoadDataBDDogs.setOnClickListener {
+            CoroutineScope(Dispatchers.IO).launch {
                 val data: MutableList<Map<String, String?>> = ArrayList()
                 try {
                     conexion = Conexion.connectionclass()
@@ -47,13 +49,21 @@ class ShowDogsBdActivity : AppCompatActivity() {
                             from,
                             to
                         )
-                        binding!!.gridViewDogs.adapter = adapter
+
+                        withContext(Dispatchers.Main){
+                            runOnUiThread {
+                                binding!!.gridViewDogs.adapter = adapter
+                            }
+                        }
                     }
                 } catch (ex: Exception) {
                     Log.e("Error en la conexion", ex.message!!)
 
                 }
+
+            }
         }
+
 
         binding!!.showDataBdBack.setOnClickListener {
             onBackPressed()
