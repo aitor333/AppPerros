@@ -13,8 +13,24 @@ class prefs(val context:Context) {
         storage.edit().putString("correo_user",name).apply()
     }
 
+    fun saveId(id:Int){
+        storage.edit().putInt("id",id).apply()
+    }
+
+    fun saveNombreSexo(name :String){
+        storage.edit().putString("nombre_sexo",name).apply()
+    }
+
     fun getName() : String{
         return storage.getString("nombre_user","")!!
+    }
+
+    fun getSexo() : String{
+        return storage.getString("nombre_sexo","")!!
+    }
+
+    fun getId() : Int{
+        return storage.getInt("id",0)
     }
 
     fun getCorreo() : String{

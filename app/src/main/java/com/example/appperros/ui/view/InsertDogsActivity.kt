@@ -205,5 +205,9 @@ class InsertDogsActivity : AppCompatActivity() {
         return conexion
     }
 
+    override fun onDestroy() {
+        super.onDestroy()
+    }
+
 
 }

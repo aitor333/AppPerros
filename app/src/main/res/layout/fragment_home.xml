@@ -44,7 +44,8 @@
             android:layout_gravity="center"
             android:layout_marginTop="20dp"
             android:text="@string/ver_perros"
-            android:textSize="12sp" />
+            android:textSize="12sp"
+            android:layout_weight="1"/>
 
         <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/btnBuscarPerros"
@@ -53,7 +54,8 @@
             android:layout_gravity="center"
             android:layout_marginTop="20dp"
             android:text="@string/buscar_perros"
-            android:textSize="14sp" />
+            android:textSize="14sp"
+            android:layout_weight="1"/>
 
         <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/btnInsertarPerro"
@@ -62,16 +64,9 @@
             android:layout_gravity="center"
             android:layout_marginTop="20dp"
             android:text="@string/insertar_perro"
-            android:textSize="14sp"/>
+            android:textSize="14sp"
+            android:layout_weight="1"/>
 
-        <androidx.appcompat.widget.AppCompatButton
-            android:id="@+id/btnBorrarPerro"
-            android:layout_width="92dp"
-            android:layout_height="58dp"
-            android:layout_gravity="center"
-            android:layout_marginTop="20dp"
-            android:text="@string/borrar_perro"
-            android:textSize="14sp" />
     </LinearLayout>
 
     <LinearLayout

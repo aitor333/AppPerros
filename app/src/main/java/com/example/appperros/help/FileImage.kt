@@ -9,6 +9,7 @@ import java.util.*
 
 class FileImage(val context:Context) {
     val photoFile: File = createImageFile()
+
     val filePath = photoFile.path
     val absolutePathFile = photoFile.absolutePath
     val fileName = photoFile.name

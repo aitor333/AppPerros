@@ -7,6 +7,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.SimpleAdapter
+import android.widget.Toast
 import com.example.appperros.R
 import com.example.appperros.databinding.FragmentHomeBinding
 import com.example.appperros.databinding.FragmentUserBinding
@@ -58,5 +59,13 @@ class Home_Fragment : Fragment() {
         binding.btnBuscarPerros.setOnClickListener(View.OnClickListener {
             startActivity(Intent(requireContext(), SearchDogsActivity::class.java))
         })
+
+
+        var msgError = Conexion.msgError
+
+        if(msgError!=null){
+            Toast.makeText(requireContext(),"Fallo en la conexion.Error : "+msgError,Toast.LENGTH_SHORT).show()
+        }
+
     }
 }
